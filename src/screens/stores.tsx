@@ -9,6 +9,7 @@ export default function Stores() {
   if (!currentUser) {
     return <Navigate to="/" replace />;
   }
+  console.log(currentUser);
   const stores = [...currentUser.stores, ...currentUser.manages];
   return (
     <section className="flex flex-col items-center justify-center h-full">

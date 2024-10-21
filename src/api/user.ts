@@ -10,6 +10,11 @@ export const login = async (email: string, password: string) => {
       body: JSON.stringify({ email, password })
     }
   );
+  
+  if (!response.ok) {
+    throw new Error(`Login failed: ${response.status} ${response.statusText}`);
+  }
+  
   return response.json();
 };
 
@@ -50,5 +55,10 @@ export const getContext = async (): Promise<UserContext> => {
       credentials: "include"
     }
   );
+  
+  if (!response.ok) {
+    throw new Error(`Failed to get user context: ${response.status} ${response.statusText}`);
+  }
+  
   return response.json();
 };

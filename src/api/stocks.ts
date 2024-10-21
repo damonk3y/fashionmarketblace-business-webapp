@@ -1,10 +1,15 @@
-export const getStock = async () => {
+export const getStock = async (storeId: string) => {
   const response = await fetch(
-    `${import.meta.env.VITE_BASE_URL}/modules/stocks/stores/b4b52528-d9a7-473d-b3c9-e91d54884414/products`,
+    `${import.meta.env.VITE_BASE_URL}/modules/stocks/stores/${storeId}/products`,
     {
       method: "GET",
       credentials: "include"
     }
   );
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status} ${response.statusText}`);
+  }
+
   return response.json();
 };

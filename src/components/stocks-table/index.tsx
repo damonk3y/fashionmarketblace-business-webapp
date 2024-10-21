@@ -8,11 +8,17 @@ import {
   TableRow
 } from "../ui/table";
 import { useQuery } from "react-query";
+import { useUserStore } from "@/stores/user";
+import { Navigate } from "react-router-dom";
 
 export const StocksTable = () => {
+  const { selectedStoreId } = useUserStore();
+  if (!selectedStoreId) {
+    return <Navigate to="/stores" replace />;
+  }
   const { data, isLoading } = useQuery({
     queryKey: ["getStock"],
-    queryFn: getStock
+    queryFn: () => getStock(selectedStoreId)
   });
 
   console.log(data, isLoading);
