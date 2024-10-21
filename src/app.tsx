@@ -13,6 +13,7 @@ import StocksCreate from "./screens/stocks-create";
 import { useUserStore } from "./stores/user";
 import Stores from "./screens/stores";
 import { useIndexBooster } from "./hooks/use-index-booster";
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProtectedRoute = ({
   children,
@@ -90,8 +91,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <main className="flex w-full h-screen flex-col">
         <RouterProvider router={router} />
+        <ToastContainer />
       </main>
-      <ToastContainer />
     </QueryClientProvider>
   );
 }
